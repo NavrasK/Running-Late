@@ -91,6 +91,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3064338962832140665}
   - component: {fileID: 3064338962832140664}
+  - component: {fileID: 3213455765734944149}
   m_Layer: 0
   m_Name: HallwaySegment_6
   m_TagString: Untagged
@@ -166,6 +167,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3213455765734944149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3064338962832140671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9878d0bc4bb258c499e22f52ecaaa939, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3421002036373459655
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,6 +9,8 @@ public class UIManager : MonoBehaviour {
     [SerializeField]
     private Text _distanceText;
     [SerializeField]
+    private Text _coinsText;
+    [SerializeField]
     private Text _scoreText;
     [SerializeField]
     private Text _raceCompleteText;
@@ -25,21 +27,25 @@ public class UIManager : MonoBehaviour {
 
     public void UpdateTimeUI(float timeRemaining) {
         if (timeRemaining >= 0) {
-            _distanceText.text = "TIME: " + timeRemaining.ToString("000.00");
+            _timerText.text = timeRemaining.ToString("000.00");
         } else {
-            _distanceText.text = "TIME: 000.00";
+            _timerText.text = "000.00";
         }
     }
 
     public void UpdateDistanceUI(float distanceRemaining) {
         if (distanceRemaining >= 0) {
-            _distanceText.text = "DISTANCE REMAINING: " + distanceRemaining.ToString("000.00");
+            _distanceText.text = distanceRemaining.ToString("000.00");
         } else {
-            _distanceText.text = "DISTANCE REMAINING: 000.00";
+            _distanceText.text = "000.00";
         }
     }
 
-    public void UpdateScoreUI(int score) {
+    public void UpdateCoinsUI(int coins) {
+        _coinsText.text = coins.ToString();
+    }
+
+    public void UpdateScoreUI(float score) {
         _scoreText.text = "SCORE: " + score;
     }
 

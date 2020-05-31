@@ -18,8 +18,12 @@ public class Player : MonoBehaviour {
     private float _iFrames = 0.5f;
     private bool _invincible = false;
 
+    // Score calculations
+    public int coins = 0;
+    public float raceScore = 0;
+
     // Game control
-    public int raceScore = 0;
+    private UIManager _UI;
     public float distanceTravelled = 0;
     private bool _raceActive = false;
 
@@ -27,6 +31,10 @@ public class Player : MonoBehaviour {
         transform.position = new Vector3(0, 0, 0);
         _rb = gameObject.GetComponent<Rigidbody2D>();
         _sprite = gameObject.GetComponent<SpriteRenderer>();
+        _UI = GameObject.Find("Canvas").GetComponent<UIManager>();
+        if (_UI == null) {
+            Debug.LogError("Player: Cannot find UIManager");
+        }
     }
 
     private void FixedUpdate() {
@@ -61,8 +69,11 @@ public class Player : MonoBehaviour {
         _raceActive = status;
     }
 
-    public void AddScore(int val) {
-        raceScore += val;
+    public void AddCoins(int val) {
+        coins += val;
+        // TODO: score multiplier system
+        raceScore = coins; //TEMP
+        _UI.UpdateCoinsUI(coins);
     }
 
     public void Damaged(float slowdown) {

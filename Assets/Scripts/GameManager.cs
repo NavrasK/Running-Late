@@ -4,20 +4,23 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
-    // TODO move victory / loss conditions here (timer / distance)
     // TODO create quiz UI and game
     // TODO control notes UI and what is on the quiz (randomize)
     // Score calculator / high scores using PlayerPrefs
-    // Persistent values (i.e. timer) when changing to quiz
 
     // Game Control
-    private int _difficulty; // -1 = easy, 0 = normal, 1 = hard
+    private int _difficulty = 0; // -1 = easy, 0 = normal, 1 = hard
     private int _score;
+    [SerializeField]
+    private int _numTiles = 20;
+    [SerializeField]
+    private float _timePerTile = 2.5f;
     private float _targetDistance;
     private float _timeElapsed = 0;
     private float _targetTime;
     private bool _timerActive = false;
-    private int _raceStatus; // 0 = active, -1 = failed, 1 = complete
+    private int _raceStatus = 0; // 0 = active, -1 = failed, 1 = complete
+    private int _quizStatus = -1; // -1 = waiting, 0 = active, 1 = over (complete or time out)
     private Player _player;
     private UIManager _UI;
 
@@ -31,7 +34,8 @@ public class GameManager : MonoBehaviour {
     [SerializeField]
     private GameObject _tileParent;
     private int _previousTile = -1;
-    private float _tileOffset = 0;
+    private float _tileNextSpawn = 0;
+    private bool _continueSpawning = true;
     private List<GameObject> _spawnedTiles;
 
     private void Start() {
@@ -44,21 +48,8 @@ public class GameManager : MonoBehaviour {
         if (_UI == null) {
             Debug.LogError("GameManager: Cannot find UIManager");
         }
-        // set target time and distance based on difficulty
-        // set UI score, time, and distance
-        // TODO: Automate level gen process
-        SpawnTile(-1);
-        SpawnTile();
-        SpawnTile();
-        SpawnTile();
-        SpawnTile();
-        SpawnTile();
-        SpawnTile();
-        SpawnTile();
-        SpawnTile();
-        SpawnTile();
-        SpawnTile();
-        SpawnTile(1);
+        SetDifficulty();
+        LevelSetup();
     }
 
     private void Update() {
@@ -67,14 +58,30 @@ public class GameManager : MonoBehaviour {
         }
         if (Input.GetKeyDown(KeyCode.Escape)) {
             Application.Quit();
-            // Alternative: return to main menu (when ready)
+            // ALT: return to main menu (when ready)
         }
-        GameStatus();
+        if (_raceStatus == 0) {
+            UpdateRaceStatus();
+        }
+        if (_quizStatus == 0) {
+            UpdateQuizStatus();
+        }
+        if (_continueSpawning) {
+            SpawnManager();
+        }
         UpdateUI();
     }
 
-    private void GameStatus() {
-        if (_timerActive && _raceStatus == 0) {
+    private void SetDifficulty() {
+        // TODO: get difficulty setting from PlayerPrefs
+        _targetDistance = 50 * _numTiles / 10;
+        _targetTime = _numTiles * _timePerTile;
+        // TODO - set difficulty level, target distance, target time, tile sets
+        // fact types, number of facts, number of questions, skill based question level
+    }
+
+    private void UpdateRaceStatus() {
+        if (_timerActive) {
             _timeElapsed += Time.deltaTime;
             float remainingTime = _targetTime - _timeElapsed;
             float remainingDistance = _targetDistance - _player.distanceTravelled;
@@ -90,13 +97,62 @@ public class GameManager : MonoBehaviour {
                 _timerActive = false;
                 _raceStatus = 1;
                 _player.RaceActive(false);
-                // move to quiz section
+                _quizStatus = 0;
+                // Move to quiz
             }
+        }
+    }
+
+    private void UpdateQuizStatus() {
+        if (_timerActive) {
+            _timeElapsed += Time.deltaTime;
+            float remainingTime = _targetTime - _timeElapsed;
+            if (remainingTime <= 0) {
+                // end state
+                remainingTime = 0;
+                _timerActive = false;
+                // move to end screen
+            }
+            // if questions are done, move to end screen
         }
     }
 
     private void UpdateUI() {
         // score, distance remaining, time remaining
+        _UI.UpdateScoreUI(CalculateScore());
+        _UI.UpdateDistanceUI(_targetDistance - _player.distanceTravelled);
+        _UI.UpdateTimeUI(_targetTime - _timeElapsed);
+    }
+
+    private int CalculateScore() {
+        int finalScore = 0;
+        float tempScore = _player.raceScore;
+        //tempScore += _maxTriviaPoints * (correctAnswers / totalQuestions);
+        //if (correctAnswers == totalQuestions): tempScore += perfectAnswerBonus;
+        //tempScore = (1 + %time_remaining) * tempScore;
+        finalScore = Mathf.RoundToInt(tempScore);
+        return finalScore;
+    }
+
+    private void LevelSetup() {
+        SpawnTile(-1);
+        for (int i = 0; i < 5; i++) {
+            SpawnTile();
+        }
+    }
+
+    private void SpawnManager() {
+        // If the player is within 3 tiles of the next spawn location, spawn a new one
+        if (_player.transform.position.x > _tileNextSpawn - 200) {
+            // If the next spawn location is the end create finish line and stop spawning
+            if (_targetDistance == _tileNextSpawn / 10) {
+                _continueSpawning = false;
+                SpawnTile(1);
+                SpawnTile(-1);
+            } else {
+                SpawnTile();
+            }
+        }
     }
 
     private void SpawnTile(int i = 0) {
@@ -122,8 +178,8 @@ public class GameManager : MonoBehaviour {
             Debug.Log("Spawned tile " + tileIndex);
         }
         tile.transform.SetParent(_tileParent.transform);
-        tile.transform.position = new Vector3(0f, _tileOffset, 0f);
-        _tileOffset += 50f;
+        tile.transform.position = new Vector3(0f, _tileNextSpawn, 0f);
+        _tileNextSpawn += 50f;
         _spawnedTiles.Add(tile);
     }
 }

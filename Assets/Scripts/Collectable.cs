@@ -18,7 +18,7 @@ public class Collectable : MonoBehaviour {
         if (other.tag == "Player") {
             Player player = other.GetComponent<Player>();
             if (player != null) {
-                player.AddScore(_coinValue);
+                player.AddCoins(_coinValue);
             }
             Destroy(this.gameObject);
         }
