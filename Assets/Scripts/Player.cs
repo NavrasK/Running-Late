@@ -52,7 +52,7 @@ public class Player : MonoBehaviour {
             distanceTravelled = transform.position.y / 10;
         } else {
             // Race is inactive (failed or completed): drift to stop
-            _speed -= 2f * _accel * Time.fixedDeltaTime;
+            _speed -= 10f * _accel * Time.fixedDeltaTime;
             if (_speed <= 0) {
                 _speed = 0;
             }

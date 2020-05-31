@@ -5843,7 +5843,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7d59d06764363e4893369eab6d33ef7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _numTiles: 20
+  _numTiles: 10
   _timePerTile: 2.5
   _hallwaySegments:
   - {fileID: 3064338962832140671, guid: 4ac338314cbd0f943ac8b8e01d17ebad, type: 3}

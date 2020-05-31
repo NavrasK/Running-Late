@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour {
     private float _tileNextSpawn = 0;
     private bool _continueSpawning = true;
     private List<GameObject> _spawnedTiles;
+    private float _deleteThreshold = 100f;
 
     private void Start() {
         _spawnedTiles = new List<GameObject>();
@@ -91,6 +92,7 @@ public class GameManager : MonoBehaviour {
                 _timerActive = false;
                 _raceStatus = -1;
                 _player.RaceActive(false);
+                _UI.RaceFailed();
             } else if (remainingDistance <= 0) {
                 // race completed
                 remainingDistance = 0;
@@ -99,6 +101,7 @@ public class GameManager : MonoBehaviour {
                 _player.RaceActive(false);
                 _quizStatus = 0;
                 // Move to quiz
+                _UI.RaceCompleted();
             }
         }
     }
@@ -139,11 +142,13 @@ public class GameManager : MonoBehaviour {
         for (int i = 0; i < 5; i++) {
             SpawnTile();
         }
+        _player.RaceActive(true);
+        _timerActive = true;
     }
 
     private void SpawnManager() {
         // If the player is within 3 tiles of the next spawn location, spawn a new one
-        if (_player.transform.position.x > _tileNextSpawn - 200) {
+        if (_player.transform.position.y > _tileNextSpawn - 200) {
             // If the next spawn location is the end create finish line and stop spawning
             if (_targetDistance == _tileNextSpawn / 10) {
                 _continueSpawning = false;
@@ -153,6 +158,11 @@ public class GameManager : MonoBehaviour {
                 SpawnTile();
             }
         }
+        if (_player.transform.position.y > _deleteThreshold) {
+            Destroy(_spawnedTiles[0]);
+            _spawnedTiles.RemoveAt(0);
+            _deleteThreshold += 50;
+        }
     }
 
     private void SpawnTile(int i = 0) {
@@ -161,7 +171,7 @@ public class GameManager : MonoBehaviour {
             // spawn empty tile
             tile = Instantiate(_hallwayEmpty) as GameObject;
             _previousTile = -1;
-            Debug.Log("Spawned tile Start");
+            Debug.Log("Spawned tile Empty");
         } else if (i == 1) {
             // spawn end tile
             tile = Instantiate(_hallwayEnd) as GameObject;
