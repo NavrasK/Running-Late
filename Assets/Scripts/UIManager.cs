@@ -17,14 +17,6 @@ public class UIManager : MonoBehaviour {
     [SerializeField]
     private Text _raceFailedText;
 
-    private void Start() {
-        // TODO
-    }
-
-    private void Update() {
-        // TODO
-    }
-
     public void UpdateTimeUI(float timeRemaining) {
         if (timeRemaining >= 0) {
             _timerText.text = timeRemaining.ToString("000.00");

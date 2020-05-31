@@ -79,14 +79,14 @@ public class Player : MonoBehaviour {
     public void Damaged(float slowdown) {
         if (!_invincible) {
             _speed = Mathf.Clamp(_speed - slowdown, _minSpeed, _maxSpeed);
-            StartCoroutine(Invincible());
+            StartCoroutine(DamageSequence());
         }
-        CameraShaker.Instance.ShakeOnce(5f, 2f, 0f, 1f);
     }
 
-    IEnumerator Invincible() {
+    IEnumerator DamageSequence() {
         _invincible = true;
-        // TODO damaged animation
+        CameraShaker.Instance.ShakeOnce(5f, 2f, 0f, 1f);
+        // TODO replace with damage animation
         Color col = _sprite.color;
         col.a = 0.5f;
         _sprite.color = col;

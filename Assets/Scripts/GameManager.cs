@@ -10,7 +10,6 @@ public class GameManager : MonoBehaviour {
 
     // Game Control
     private int _difficulty = 0; // -1 = easy, 0 = normal, 1 = hard
-    private int _score;
     [SerializeField]
     private int _numTiles = 20;
     [SerializeField]
@@ -67,9 +66,7 @@ public class GameManager : MonoBehaviour {
         if (_quizStatus == 0) {
             UpdateQuizStatus();
         }
-        if (_continueSpawning) {
-            SpawnManager();
-        }
+        SpawnManager();
         UpdateUI();
     }
 
@@ -96,11 +93,11 @@ public class GameManager : MonoBehaviour {
             } else if (remainingDistance <= 0) {
                 // race completed
                 remainingDistance = 0;
-                _timerActive = false;
                 _raceStatus = 1;
                 _player.RaceActive(false);
                 _quizStatus = 0;
                 // Move to quiz
+                _timerActive = false;
                 _UI.RaceCompleted();
             }
         }
@@ -121,7 +118,6 @@ public class GameManager : MonoBehaviour {
     }
 
     private void UpdateUI() {
-        // score, distance remaining, time remaining
         _UI.UpdateScoreUI(CalculateScore());
         _UI.UpdateDistanceUI(_targetDistance - _player.distanceTravelled);
         _UI.UpdateTimeUI(_targetTime - _timeElapsed);
@@ -148,14 +144,16 @@ public class GameManager : MonoBehaviour {
 
     private void SpawnManager() {
         // If the player is within 3 tiles of the next spawn location, spawn a new one
-        if (_player.transform.position.y > _tileNextSpawn - 200) {
-            // If the next spawn location is the end create finish line and stop spawning
-            if (_targetDistance == _tileNextSpawn / 10) {
-                _continueSpawning = false;
-                SpawnTile(1);
-                SpawnTile(-1);
-            } else {
-                SpawnTile();
+        if (_continueSpawning) {
+            if (_player.transform.position.y > _tileNextSpawn - 200) {
+                // If the next spawn location is the end create finish line and stop spawning
+                if (_targetDistance == _tileNextSpawn / 10) {
+                    _continueSpawning = false;
+                    SpawnTile(1);
+                    SpawnTile(-1);
+                } else {
+                    SpawnTile();
+                }
             }
         }
         if (_player.transform.position.y > _deleteThreshold) {
