@@ -346,7 +346,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 000
+  m_Text: 0000
 --- !u!222 &45200525
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3052,84 +3052,6 @@ Transform:
   m_Father: {fileID: 1321253785}
   m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &477537393
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 477537394}
-  - component: {fileID: 477537396}
-  - component: {fileID: 477537395}
-  m_Layer: 5
-  m_Name: Completed_Text
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &477537394
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 477537393}
-  m_LocalRotation: {x: -0, y: -0, z: 0.13016091, w: 0.9914929}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1742919331}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 14.958001}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.00006357829, y: 0}
-  m_SizeDelta: {x: 659.0191, y: 99.30823}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &477537395
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 477537393}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.06672692, g: 1, b: 0, a: 1}
-  m_RaycastTarget: 1
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_FontData:
-    m_Font: {fileID: 12800000, guid: 24fc47b1951ffb641ad6ee3fe9b96f53, type: 3}
-    m_FontSize: 72
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 77
-    m_Alignment: 0
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 1
-    m_VerticalOverflow: 1
-    m_LineSpacing: 1
-  m_Text: A WINRAR IS YOU
---- !u!222 &477537396
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 477537393}
-  m_CullTransparentMesh: 0
 --- !u!1001 &483099823
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3962,7 +3884,7 @@ RectTransform:
   - {fileID: 1928508759}
   - {fileID: 548961676}
   m_Father: {fileID: 1004330459}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5102,7 +5024,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.7028302, g: 1, b: 0.99709016, a: 0.27058825}
+  m_Color: {r: 0.72156864, g: 1, b: 0.99709016, a: 0.88235295}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -5216,7 +5138,7 @@ GameObject:
   - component: {fileID: 728490766}
   - component: {fileID: 728490765}
   m_Layer: 5
-  m_Name: Failed_Text
+  m_Name: TimeUp_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5233,8 +5155,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1742919331}
-  m_RootOrder: 3
+  m_Father: {fileID: 1004330459}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -13.99}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5267,13 +5189,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 183
-    m_Alignment: 0
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: LOSER
+  m_Text: TIME'S UP
 --- !u!222 &728490766
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5841,6 +5763,7 @@ GameObject:
   m_Component:
   - component: {fileID: 925783014}
   - component: {fileID: 925783013}
+  - component: {fileID: 925783015}
   m_Layer: 0
   m_Name: CameraRig
   m_TagString: Untagged
@@ -5876,6 +5799,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -20, y: 0, z: 0}
+--- !u!95 &925783015
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 925783012}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 65e0ca684f115c846850f19d98bc1746, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &950610223
 GameObject:
   m_ObjectHideFlags: 0
@@ -6295,11 +6237,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 351962267aba60a4c8c27bf977200b93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _timeUpText: {fileID: 728490765}
+  quizReady: 0
+  _raceUI: {fileID: 1742919330}
   _timerText: {fileID: 597752496}
   _distanceText: {fileID: 446926620}
   _coinsText: {fileID: 45200524}
-  _raceCompleteText: {fileID: 477537395}
-  _raceFailedText: {fileID: 728490765}
+  _quizUI: {fileID: 575976759}
+  _quizTimerText: {fileID: 243950524}
+  _questionCounter: {fileID: 1978863835}
+  _questionDisplay: {fileID: 1051451375}
+  _option1: {fileID: 1429553997}
+  _option2: {fileID: 1370220853}
+  _option3: {fileID: 568166983}
+  _option4: {fileID: 719578782}
 --- !u!114 &1004330456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6371,8 +6322,9 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 575976760}
   - {fileID: 1742919331}
+  - {fileID: 575976760}
+  - {fileID: 728490764}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6424,8 +6376,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7d59d06764363e4893369eab6d33ef7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _numTiles: 10
+  _numTiles: 5
   _timePerTile: 2.5
+  _quizTime: 30
   _hallwaySegments:
   - {fileID: 3064338962832140671, guid: 4ac338314cbd0f943ac8b8e01d17ebad, type: 3}
   - {fileID: 3064338962832140671, guid: 100938442cd8aad4b968a93b3041f499, type: 3}
@@ -6936,7 +6889,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9056604, g: 0.9056604, b: 0.9056604, a: 1}
+  m_Color: {r: 0.0754717, g: 0.0754717, b: 0.0754717, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -7579,7 +7532,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1209260783}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1209260783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9287,13 +9251,33 @@ GameObject:
   m_Component:
   - component: {fileID: 1432021003}
   - component: {fileID: 1432021002}
+  - component: {fileID: 1432021001}
   m_Layer: 0
-  m_Name: Notes Camera
+  m_Name: NotesCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!95 &1432021001
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1432021000}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 76ff8abf678e3bc47bc590ecaa952aa0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!20 &1432021002
 Camera:
   m_ObjectHideFlags: 0
@@ -10518,6 +10502,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1742919331}
+  - component: {fileID: 1742919332}
   m_Layer: 5
   m_Name: RaceUI
   m_TagString: Untagged
@@ -10538,16 +10523,33 @@ RectTransform:
   m_Children:
   - {fileID: 336665262}
   - {fileID: 552800633}
-  - {fileID: 477537394}
-  - {fileID: 728490764}
   m_Father: {fileID: 1004330459}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 800.00024, y: 450}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &1742919332
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1742919330}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a5b69eccef9c0a54c94dced6d2508d52, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1772415139
 PrefabInstance:
   m_ObjectHideFlags: 0

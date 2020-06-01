@@ -7,7 +7,7 @@ public class Player : MonoBehaviour {
     // Movement variables
     private float _hSpeed = 13f;
     private float _speed = 15f;
-    private float _accel = 1.75f;
+    private float _accel = 2.5f;
     private float _maxSpeed = 30f;
     private float _minSpeed = 10f;
     private Vector2 _movement;
