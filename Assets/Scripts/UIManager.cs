@@ -11,8 +11,6 @@ public class UIManager : MonoBehaviour {
     [SerializeField]
     private Text _coinsText;
     [SerializeField]
-    private Text _scoreText;
-    [SerializeField]
     private Text _raceCompleteText;
     [SerializeField]
     private Text _raceFailedText;
@@ -35,10 +33,6 @@ public class UIManager : MonoBehaviour {
 
     public void UpdateCoinsUI(int coins) {
         _coinsText.text = coins.ToString();
-    }
-
-    public void UpdateScoreUI(float score) {
-        _scoreText.text = "SCORE: " + score;
     }
 
     public void RaceCompleted() {

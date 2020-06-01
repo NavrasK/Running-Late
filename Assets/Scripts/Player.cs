@@ -61,7 +61,6 @@ public class Player : MonoBehaviour {
             Vector2 moveTarget = _rb.position + _movement * Time.fixedDeltaTime;
             moveTarget.x = Mathf.Clamp(moveTarget.x, -5f, 5f);
             _rb.MovePosition(moveTarget);
-            // explosion animation if you failed?
         }
     }
 

@@ -118,7 +118,7 @@ public class GameManager : MonoBehaviour {
     }
 
     private void UpdateUI() {
-        _UI.UpdateScoreUI(CalculateScore());
+        //_UI.UpdateScoreUI(CalculateScore());
         _UI.UpdateDistanceUI(_targetDistance - _player.distanceTravelled);
         _UI.UpdateTimeUI(_targetTime - _timeElapsed);
     }
