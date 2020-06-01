@@ -36,6 +36,16 @@ public class GameManager : MonoBehaviour {
     private List<GameObject> _spawnedTiles;
     private float _deleteThreshold = 100f;
 
+    // Quiz variables
+    private int _totalQuestions;
+    private int _currentQuestion = 0;
+    private int _correctQuestions = 0;
+    [SerializeField]
+    private float _questionPointsValue = 1000;
+    [SerializeField]
+    private float _perfectQuizBonus = 500;
+    private float _difficultyMultiplier;
+
     private void Start() {
         _spawnedTiles = new List<GameObject>();
         _player = GameObject.Find("Player").GetComponent<Player>();
@@ -75,6 +85,8 @@ public class GameManager : MonoBehaviour {
 
     private void SetDifficulty() {
         // TODO: get difficulty setting from PlayerPrefs
+        _difficultyMultiplier = 1; // TEMP
+        _totalQuestions = 5; // TEMP
         _targetDistance = 50 * _numTiles / 10;
         _targetTime = _numTiles * _timePerTile + _quizTime;
         // TODO - set difficulty level, target distance, target time, 
@@ -207,12 +219,15 @@ public class GameManager : MonoBehaviour {
     ///////////////
 
     private int CalculateScore() {
-        int finalScore = 0;
-        float tempScore = _player.raceScore;
-        //tempScore += _maxTriviaPoints * (correctAnswers / totalQuestions);
-        //if (correctAnswers == totalQuestions): tempScore += perfectAnswerBonus;
-        //tempScore = (1 + %time_remaining) * tempScore;
-        finalScore = Mathf.RoundToInt(tempScore);
-        return finalScore;
+        float finalScore = _player.raceScore;
+        finalScore += _questionPointsValue * (_correctQuestions / _totalQuestions);
+        if (_correctQuestions == _totalQuestions) {
+            finalScore += _perfectQuizBonus;
+        }
+        if (_correctQuestions / _totalQuestions >= 0.5f) {
+            finalScore *= 1 + (_targetTime - _timeElapsed);
+        }
+        finalScore *= _difficultyMultiplier;
+        return Mathf.RoundToInt(finalScore);
     }
 }
