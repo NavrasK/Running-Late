@@ -986,7 +986,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1012578763}
+      - m_Target: {fileID: 1482322564}
         m_MethodName: ButtonPressed
         m_Mode: 3
         m_Arguments:
@@ -3329,7 +3329,7 @@ GameObject:
   - component: {fileID: 548961678}
   - component: {fileID: 548961677}
   m_Layer: 5
-  m_Name: Option3
+  m_Name: Option2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3348,7 +3348,7 @@ RectTransform:
   m_Children:
   - {fileID: 719578781}
   m_Father: {fileID: 575976760}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -3398,13 +3398,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1012578763}
+      - m_Target: {fileID: 1482322564}
         m_MethodName: ButtonPressed
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -3722,7 +3722,7 @@ GameObject:
   - component: {fileID: 568166984}
   - component: {fileID: 568166983}
   m_Layer: 5
-  m_Name: Option2_Text
+  m_Name: Option3_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3821,8 +3821,8 @@ RectTransform:
   - {fileID: 1169372419}
   - {fileID: 1209260781}
   - {fileID: 165185056}
-  - {fileID: 1928508759}
   - {fileID: 548961676}
+  - {fileID: 1928508759}
   m_Father: {fileID: 1004330459}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4922,7 +4922,7 @@ GameObject:
   - component: {fileID: 719578783}
   - component: {fileID: 719578782}
   m_Layer: 5
-  m_Name: Option3_Text
+  m_Name: Option2_Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4979,7 +4979,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: OPTION 4
+  m_Text: OPTION 2
 --- !u!222 &719578783
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6194,8 +6194,8 @@ MonoBehaviour:
   _questionDisplay: {fileID: 1051451375}
   _option0: {fileID: 1429553997}
   _option1: {fileID: 1370220853}
-  _option2: {fileID: 568166983}
-  _option3: {fileID: 719578782}
+  _option2: {fileID: 719578782}
+  _option3: {fileID: 568166983}
 --- !u!114 &1004330456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6290,7 +6290,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1012578761}
   - component: {fileID: 1012578762}
-  - component: {fileID: 1012578763}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -6327,7 +6326,7 @@ MonoBehaviour:
   _difficulty: 420
   _numTiles: 5
   _timePerTile: 2.5
-  _quizTime: 3
+  _quizTime: 30
   _hallwaySegments:
   - {fileID: 3064338962832140671, guid: 4ac338314cbd0f943ac8b8e01d17ebad, type: 3}
   - {fileID: 3064338962832140671, guid: 100938442cd8aad4b968a93b3041f499, type: 3}
@@ -6340,22 +6339,6 @@ MonoBehaviour:
   _hallwayEnd: {fileID: 3064338962832140671, guid: 243691fbbdd3e9f40a5dceb5f0024590,
     type: 3}
   _tileParent: {fileID: 1814105005}
---- !u!114 &1012578763
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1012578760}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eaaed1739618aa4409e300d679536ad3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _notesPage: {fileID: 552800632}
-  _notePrefab: {fileID: 6540477375782546839, guid: 554c5ec3161f15240bfcb66472cb935c,
-    type: 3}
-  _quizScore: 0
 --- !u!1 &1020068465
 GameObject:
   m_ObjectHideFlags: 0
@@ -7498,7 +7481,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1012578763}
+      - m_Target: {fileID: 1482322564}
         m_MethodName: ButtonPressed
         m_Mode: 3
         m_Arguments:
@@ -8663,7 +8646,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: OPTION 2
+  m_Text: OPTION 1
 --- !u!222 &1370220854
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9197,7 +9180,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: OPTION 1
+  m_Text: OPTION 0
 --- !u!222 &1429553998
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9606,6 +9589,55 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1474478536}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1482322563
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1482322565}
+  - component: {fileID: 1482322564}
+  m_Layer: 0
+  m_Name: QuizManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1482322564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1482322563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaaed1739618aa4409e300d679536ad3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _notesPage: {fileID: 552800632}
+  _notePrefab: {fileID: 6540477375782546839, guid: 554c5ec3161f15240bfcb66472cb935c,
+    type: 3}
+  _notes: []
+  _questions: []
+  _quizScore: 0
+--- !u!4 &1482322565
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1482322563}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 372.42697, y: 82.49789, z: -315.67856}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1495784804
 GameObject:
   m_ObjectHideFlags: 0
@@ -11640,7 +11672,7 @@ GameObject:
   - component: {fileID: 1928508761}
   - component: {fileID: 1928508760}
   m_Layer: 5
-  m_Name: Option2
+  m_Name: Option3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11659,7 +11691,7 @@ RectTransform:
   m_Children:
   - {fileID: 568166982}
   m_Father: {fileID: 575976760}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -11709,13 +11741,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1012578763}
+      - m_Target: {fileID: 1482322564}
         m_MethodName: ButtonPressed
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0

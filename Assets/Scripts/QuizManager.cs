@@ -10,7 +10,9 @@ public class QuizManager : MonoBehaviour {
     private GameObject _notesPage;
     [SerializeField]
     private GameObject _notePrefab;
+    [SerializeField]
     private List<string> _notes;
+    [SerializeField]
     private List<Question> _questions;
     private int _numQuestions;
     private int _questionIndex;

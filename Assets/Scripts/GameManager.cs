@@ -56,7 +56,10 @@ public class GameManager : MonoBehaviour {
         if (_UI == null) {
             Debug.LogError("GameManager: Cannot find UIManager");
         }
-        _quiz = gameObject.GetComponent<QuizManager>();
+        _quiz = GameObject.Find("QuizManager").GetComponent<QuizManager>();
+        if (_quiz == null) {
+            Debug.LogError("GameManager: Cannot find QuizManager");
+        }
         SetDifficulty();
         RaceSetup();
         QuizSetup();
@@ -92,6 +95,7 @@ public class GameManager : MonoBehaviour {
         // TODO: Additional difficulty settings (nightmare, endless)
         //_difficulty = PlayerPrefs.GetInt("Difficulty", 0);
         _numTiles = 25 + Random.Range(0, 10);
+        _difficulty = 420; //REMOVE THIS LINE!
         switch (_difficulty) {
             case -1: // EASY
                 _difficultyMultiplier = 0.75f;
@@ -247,7 +251,7 @@ public class GameManager : MonoBehaviour {
                 _timerActive = false;
                 _quizStatus = 1;
                 CalculateScore();
-                if (_correctQuestions / _totalQuestions >= 0.5f) {
+                if (_correctQuestions > Mathf.FloorToInt(_totalQuestions / 2)) {
                     _UI.GameOver(true);
                 } else {
                     _UI.GameOver(false);
@@ -271,7 +275,7 @@ public class GameManager : MonoBehaviour {
         if (_correctQuestions == _totalQuestions) {
             finalScore += _perfectQuizBonus;
         }
-        if (_correctQuestions / _totalQuestions >= 0.5f) {
+        if (_correctQuestions > Mathf.FloorToInt(_totalQuestions / 2)) {
             finalScore *= 1 + (_targetTime - _timeElapsed);
         }
         finalScore *= _difficultyMultiplier;
