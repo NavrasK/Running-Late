@@ -7,8 +7,12 @@ public class UIManager : MonoBehaviour {
     // General UI variables
     [SerializeField]
     private Text _timeUpText;
+    [SerializeField]
+    private Text _victoryText;
+    [SerializeField]
+    private Text _loserText;
     private bool _isRace = true;
-    public bool quizReady = false;
+    public int quizReady = -1;
     private Animator _mainCameraAnimator;
     private Animator _notesCameraAnimator;
 
@@ -31,15 +35,17 @@ public class UIManager : MonoBehaviour {
     [SerializeField]
     private Text _questionCounter;
     [SerializeField]
+    private Text _quizScoreText;
+    [SerializeField]
     private Text _questionDisplay;
+    [SerializeField]
+    private Text _option0;
     [SerializeField]
     private Text _option1;
     [SerializeField]
     private Text _option2;
     [SerializeField]
     private Text _option3;
-    [SerializeField]
-    private Text _option4;
 
     private void Start() {
         _raceUIAnimator = _raceUI.GetComponent<Animator>();
@@ -59,25 +65,19 @@ public class UIManager : MonoBehaviour {
     }
 
     public void UpdateTimeUI(float timeRemaining) {
+        Text timer;
         if (_isRace) {
-            if (timeRemaining >= 0) {
-                if (timeRemaining <= 10) {
-                    _timerText.color = Color.red;
-                }
-                _timerText.text = timeRemaining.ToString("000.00");
-            } else {
-                _timerText.text = "000.00";
-            }
+            timer = _timerText;
         } else {
-            if (timeRemaining >= 0) {
-                if (timeRemaining <= 10) {
-                    _quizTimerText.color = Color.red;
-                }
-                _quizTimerText.text = timeRemaining.ToString("000.00");
-            } else {
-                _quizTimerText.text = "000.00";
-            }
+            timer = _quizTimerText;
         }
+        if (timeRemaining <= 10) {
+            timer.color = Color.red;
+        }
+        if (timeRemaining <= 0) {
+            timeRemaining = 0;
+        }
+        timer.text = timeRemaining.ToString("000.00");
     }
 
     public void UpdateDistanceUI(float distanceRemaining) {
@@ -97,6 +97,15 @@ public class UIManager : MonoBehaviour {
         // TODO transition to score calculation screen
     }
 
+    public void GameOver(bool victory) {
+        if (victory) {
+            _victoryText.gameObject.SetActive(true);
+        } else {
+            _loserText.gameObject.SetActive(true);
+        }
+        // TODO transition to score calculation screen
+    }
+
     public void ActivateQuiz() {
         _isRace = false;
         StartCoroutine(QuizTransition());
@@ -108,8 +117,23 @@ public class UIManager : MonoBehaviour {
         _raceUIAnimator.SetTrigger("RaceOver");
         yield return new WaitForSeconds(0.8f);
         _raceUI.gameObject.SetActive(false);
-        _quizUI.gameObject.SetActive(true); // have entrance animation trigger automatically
+        // TODO: quiz UI entrance animation (triggered automatically)
+        _quizUI.gameObject.SetActive(true);
+        quizReady = 0;
         yield return new WaitForSeconds(1f);
-        quizReady = true;
+        quizReady = 1;
+    }
+
+    public void UpdateQuizUI(int index, int numQ, Question q) {
+        _questionCounter.text = "Question " + index + " / " + numQ;
+        _questionDisplay.text = q.q;
+        _option0.text = q.a0;
+        _option1.text = q.a1;
+        _option2.text = q.a2;
+        _option3.text = q.a3;
+    }
+
+    public void UpdateQuizScore(int score) {
+        _quizScoreText.text = "SCORE: " + score;
     }
 }

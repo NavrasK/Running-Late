@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
     // Game Control
+    [SerializeField]
     private int _difficulty = 0; // -1 = easy, 0 = normal, 1 = hard
     [SerializeField]
     private int _numTiles = 20;
@@ -37,14 +38,13 @@ public class GameManager : MonoBehaviour {
     private float _deleteThreshold = 100f;
 
     // Quiz variables
-    private int _totalQuestions;
-    private int _currentQuestion = 0;
+    private QuizManager _quiz;
+    private int _totalQuestions = 10;
+    private int _totalNotes = 5;
     private int _correctQuestions = 0;
-    [SerializeField]
     private float _questionPointsValue = 1000;
-    [SerializeField]
     private float _perfectQuizBonus = 500;
-    private float _difficultyMultiplier;
+    private float _difficultyMultiplier = 1;
 
     private void Start() {
         _spawnedTiles = new List<GameObject>();
@@ -56,6 +56,7 @@ public class GameManager : MonoBehaviour {
         if (_UI == null) {
             Debug.LogError("GameManager: Cannot find UIManager");
         }
+        _quiz = gameObject.GetComponent<QuizManager>();
         SetDifficulty();
         RaceSetup();
         QuizSetup();
@@ -76,6 +77,8 @@ public class GameManager : MonoBehaviour {
         } else if (_quizStatus == 0) {
             UpdateQuizStatus();
             UpdateQuizUI();
+        } else if (_quizStatus == 1) {
+            // go to endgame
         }
     }
 
@@ -84,13 +87,43 @@ public class GameManager : MonoBehaviour {
     /////////////
 
     private void SetDifficulty() {
-        // TODO: get difficulty setting from PlayerPrefs
-        _difficultyMultiplier = 1; // TEMP
-        _totalQuestions = 5; // TEMP
+        // TODO: set difficulty in main menu
+        // TODO: set tile sets based on difficulty
+        // TODO: Additional difficulty settings (nightmare, endless)
+        //_difficulty = PlayerPrefs.GetInt("Difficulty", 0);
+        _numTiles = 25 + Random.Range(0, 10);
+        switch (_difficulty) {
+            case -1: // EASY
+                _difficultyMultiplier = 0.75f;
+                _timePerTile = 3;
+                _totalNotes = 4;
+                _totalQuestions = 8;
+                break;
+            case 1: // HARD
+                _difficultyMultiplier = 1.25f;
+                _numTiles += Random.Range(1, 5);
+                _timePerTile = 2;
+                _quizTime = 20;
+                _totalNotes = 6;
+                _totalQuestions = 15;
+                break;
+            case 420: // TESTING
+                _numTiles = 5;
+                _totalNotes = 6;
+                _totalQuestions = 5;
+                _timePerTile = 3;
+                Debug.Log("TESTING MODE");
+                break;
+            default: // NORMAL
+                // Use all default values
+                break;
+        }
+        _player.SetDifficulty(_difficulty);
         _targetDistance = 50 * _numTiles / 10;
         _targetTime = _numTiles * _timePerTile + _quizTime;
-        // TODO - set difficulty level, target distance, target time, 
-        // tile sets, fact types, # of facts, # of questions, skill based question level
+        _questionPointsValue = _numTiles * 20;
+        _perfectQuizBonus = Mathf.RoundToInt(_questionPointsValue / 2);
+        // TODO - set difficulty level, target distance, target time, and tile sets
     }
 
     private void RaceSetup() {
@@ -100,7 +133,8 @@ public class GameManager : MonoBehaviour {
     }
 
     private void QuizSetup() {
-        // TODO
+        _quiz.GenerateNotesPage(_totalNotes);
+        _quiz.GenerateQuiz(_totalQuestions);
     }
 
     ////////////
@@ -191,7 +225,11 @@ public class GameManager : MonoBehaviour {
     IEnumerator ActivateQuiz() {
         _UI.ActivateQuiz();
         _timerActive = false;
-        while (!_UI.quizReady) {
+        while (_UI.quizReady != 0) {
+            yield return new WaitForEndOfFrame();
+        }
+        _quiz.StartQuiz();
+        while (_UI.quizReady != 1) {
             yield return new WaitForEndOfFrame();
         }
         _timerActive = true;
@@ -205,8 +243,16 @@ public class GameManager : MonoBehaviour {
                 remainingTime = 0;
                 _timerActive = false;
                 _UI.TimeUp();
+            } else if (_quiz.GetStatus() == 1) {
+                _timerActive = false;
+                _quizStatus = 1;
+                CalculateScore();
+                if (_correctQuestions / _totalQuestions >= 0.5f) {
+                    _UI.GameOver(true);
+                } else {
+                    _UI.GameOver(false);
+                }
             }
-            // if questions are done, move to end screen
         }
     }
 
@@ -219,6 +265,7 @@ public class GameManager : MonoBehaviour {
     ///////////////
 
     private int CalculateScore() {
+        _correctQuestions = _quiz._quizScore;
         float finalScore = _player.raceScore;
         finalScore += _questionPointsValue * (_correctQuestions / _totalQuestions);
         if (_correctQuestions == _totalQuestions) {

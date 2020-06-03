@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Obstacle : MonoBehaviour {
-    [SerializeField]
     private float _slowdown = 10f;
 
     private void OnTriggerEnter2D(Collider2D other) {

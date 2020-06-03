@@ -9,7 +9,7 @@ public class Player : MonoBehaviour {
     private float _speed = 15f;
     private float _accel = 2.5f;
     private float _maxSpeed = 30f;
-    private float _minSpeed = 10f;
+    private float _minSpeed = 12f;
     private Vector2 _movement;
     private Rigidbody2D _rb;
 
@@ -61,6 +61,16 @@ public class Player : MonoBehaviour {
             Vector2 moveTarget = _rb.position + _movement * Time.fixedDeltaTime;
             moveTarget.x = Mathf.Clamp(moveTarget.x, -5f, 5f);
             _rb.MovePosition(moveTarget);
+        }
+    }
+
+    public void SetDifficulty(int difficulty) {
+        if (difficulty == -1) {
+            _minSpeed = 15f;
+        } else if (difficulty == 1) {
+            _minSpeed = 6f;
+            _maxSpeed = 40f;
+            _accel = 2.75f;
         }
     }
 
