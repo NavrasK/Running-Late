@@ -41,12 +41,12 @@ public class QuizManager : MonoBehaviour {
             note.transform.localPosition = new Vector3(0, notePosition, 0);
             Text noteText = note.GetComponent<Text>();
             string noteContents = GenerateNote();
-            _notes.Add(noteContents);
             note.name = "Note " + (i + 1).ToString() + ": " + noteContents;
             noteText.text = noteContents;
             if (numNotes <= 5) {
                 noteText.fontSize = 25;
             }
+            _notes.Add(noteContents);
             Debug.Log("Generated note " + i);
         }
     }
@@ -58,10 +58,12 @@ public class QuizManager : MonoBehaviour {
     public void GenerateQuiz(int numQ) {
         // difficulty level can control question / answer sets and number of questions / notes
         _numQuestions = numQ;
+        Debug.Log("Num questions: " + numQ + " // " + _numQuestions);
         for (int i = 0; i < _numQuestions; i++) {
             _questions.Add(GenerateQuestion(i));
+            Debug.Log("Generated question " + i);
         }
-        ShuffleQuestions();
+        //ShuffleQuestions();
     }
 
     private void ShuffleQuestions() {

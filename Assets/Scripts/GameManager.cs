@@ -137,6 +137,7 @@ public class GameManager : MonoBehaviour {
     }
 
     private void QuizSetup() {
+        Debug.Log("Starting quiz setup");
         _quiz.GenerateNotesPage(_totalNotes);
         _quiz.GenerateQuiz(_totalQuestions);
     }
@@ -200,12 +201,12 @@ public class GameManager : MonoBehaviour {
             // spawn empty tile
             tile = Instantiate(_hallwayEmpty) as GameObject;
             _previousTile = -1;
-            Debug.Log("Spawned tile Empty");
+            //Debug.Log("Spawned tile Empty");
         } else if (i == 1) {
             // spawn end tile
             tile = Instantiate(_hallwayEnd) as GameObject;
             _previousTile = -1;
-            Debug.Log("Spawned tile End");
+            //Debug.Log("Spawned tile End");
         } else {
             // spawn random tile
             int tileIndex = Random.Range(0, _hallwaySegments.Length);
@@ -214,7 +215,7 @@ public class GameManager : MonoBehaviour {
             }
             tile = Instantiate(_hallwaySegments[tileIndex]) as GameObject;
             _previousTile = tileIndex;
-            Debug.Log("Spawned tile " + tileIndex);
+            //Debug.Log("Spawned tile " + tileIndex);
         }
         tile.transform.SetParent(_tileParent.transform);
         tile.transform.position = new Vector3(0f, _tileNextSpawn, 0f);
