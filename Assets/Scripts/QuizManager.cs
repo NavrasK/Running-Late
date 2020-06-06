@@ -58,11 +58,13 @@ public class QuizManager : MonoBehaviour {
     public void GenerateQuiz(int numQ) {
         // difficulty level can control question / answer sets and number of questions / notes
         _numQuestions = numQ;
-        Debug.Log("Num questions: " + numQ + " // " + _numQuestions);
+        Debug.Log("Number of questions to generate: " + numQ + " // " + _numQuestions);
         for (int i = 0; i < _numQuestions; i++) {
-            _questions.Add(GenerateQuestion(i));
-            Debug.Log("Generated question " + i);
+            Question q = GenerateQuestion(i);
+            _questions.Add(q);
+            Debug.Log("Generated question " + _questions.Count  + ": " + q);
         }
+        Debug.Log("There are " + _questions.Count + " questions");
         //ShuffleQuestions();
     }
 
@@ -103,8 +105,8 @@ public class QuizManager : MonoBehaviour {
         _UI.UpdateQuizUI(_questionIndex + 1, _numQuestions, _currentQuestion);
     }
 
-    public void ButtonPressed(int index) {
-        if (_currentQuestion.ans == index) {
+    public void ButtonPressed(int answerIndex) {
+        if (_currentQuestion.ans == answerIndex) {
             _quizScore += 1;
             _UI.UpdateQuizScore(_quizScore);
         }

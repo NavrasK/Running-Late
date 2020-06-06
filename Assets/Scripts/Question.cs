@@ -20,4 +20,8 @@ public class Question {
         this.a3 = a3;
         this.ans = ans;
     }
+
+    public override string ToString() {
+        return "\nQ: "+q+"\n0) "+a0+"\n1) "+a1+"\n2) "+a2+"\n3) "+a3+"\nAns: "+ans;
+    }
 }
